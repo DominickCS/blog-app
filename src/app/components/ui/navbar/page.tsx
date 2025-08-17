@@ -39,13 +39,13 @@ export default function NavigationBar() {
               </div>
               <div className="mobile-nav-open flex flex-col items-center justify-between min-h-[250px]">
                 <nav className="left-nav">
-                  <Link className="m-8" href="/">Home</Link>
-                  <Link className="m-8" href="/">About</Link>
+                  <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/">Home</Link>
+                  <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/about">About</Link>
                 </nav>
                 <nav className="right-nav">
-                  <Link className="m-8" href="/">Search</Link>
-                  <Link className="m-8" href="/">Sign In</Link>
-                  <Link className="m-8" href="/">Subscribe</Link>
+                  <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/">Search</Link>
+                  <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/login">Sign In</Link>
+                  <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/subscribe">Subscribe</Link>
                 </nav>
               </div>
             </div>
@@ -54,15 +54,15 @@ export default function NavigationBar() {
         <div className="desktop-navigation-bar hidden lg:flex lg:justify-between mt-4">
           <nav className="left-nav">
             <Link className="m-8" href="/">Home</Link>
-            <Link className="m-8" href="/">About</Link>
+            <Link className="m-8" href="/about">About</Link>
           </nav>
           <nav className="mid-nav">
             <Link href="/">Dominick Smith</Link>
           </nav>
           <nav className="right-nav">
             <Link className="m-8" href="/">Search</Link>
-            <Link className="m-8" href="/">Sign In</Link>
-            <Link className="m-8" href="/">Subscribe</Link>
+            <Link className="m-8" href="/login">Sign In</Link>
+            <Link className="m-8" href="/subscribe">Subscribe</Link>
           </nav>
         </div>
       </div>

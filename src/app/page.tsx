@@ -1,9 +1,7 @@
-import NavigationBar from "@/app/components/ui/navbar/page"
-
-export default function SharedComponents() {
+export default function IndexPage() {
   return (
     <>
-      <NavigationBar />
+      <h1>Welcome to my Blog!</h1>
     </>
   )
 }

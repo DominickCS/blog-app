@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "db-migrate-pg": "^1.5.2",
+    "dotenv": "^17.2.1",
+    "fs": "^0.0.1-security",
     "next": "15.4.6",
     "pg": "^8.16.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

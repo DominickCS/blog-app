@@ -16,8 +16,8 @@ export default function UserProfile() {
     getuser()
   }, []);
 
-  let firstName = userAuth ? [0].first_name
-  let last_name = userAuth ? [0].last_name
+  let firstName = userAuth[0].first_name
+  let last_name = userAuth[0].last_name
   return (
     <>
       <h1>Hello! {firstName} {last_name}!</h1>

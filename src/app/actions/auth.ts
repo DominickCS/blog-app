@@ -1,6 +1,7 @@
 'use server'
 
 import { SignupFormSchema, LoginFormSchema, FormState } from '@/app/lib/definitions'
+import { redirect } from 'next/navigation';
 const bcrypt = require('bcrypt');
 const pool = require("@/../db")
 
@@ -17,20 +18,19 @@ export async function login(state: FormState, formData: FormData) {
   }
 
   const { username, password } = validatedFields.data
+  let user_id
   try {
-    const userAuth = await pool.query(`SELECT uuid username, password FROM users WHERE username='${username}'`)
-    // console.log(userAuth)
-    console.log(password)
-    console.log(userAuth.rows[0].password)
-
+    const userAuth = await pool.query(`SELECT user_id, username, password FROM users WHERE username='${username}'`)
     let comparePasswords = await bcrypt.compare(password, userAuth.rows[0].password)
-    console.log(comparePasswords)
+    if (comparePasswords) {
+      user_id = userAuth.rows[0].user_id
+    }
   } catch (error) {
     return {
-      message: 'DB Error - Could not verify user',
+      message: 'Incorrect Login Credentials',
     };
   }
-
+  redirect(`/profile/${user_id}/`)
 }
 
 

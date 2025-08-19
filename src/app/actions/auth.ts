@@ -75,4 +75,5 @@ export async function signup(state: FormState, formData: FormData) {
       message: 'An error occured during registration.',
     };
   }
+  redirect(`/`)
 }

@@ -11,7 +11,7 @@ export function SignupForm() {
     verifySession()
   }, []);
   return (
-    <form className='flex flex-col align-middle items-center justify-between px-80 py-32' action={action}>
+    <form className='flex flex-col mt-8 items-center md:justify-between ' action={action}>
       <div className=''>
         <label htmlFor="first_name">First Name</label>
         <input id="first_name" name="first_name" placeholder="First Name" />

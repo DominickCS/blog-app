@@ -14,7 +14,7 @@ export function LoginForm() {
 
   return (
     <>
-      <form className='flex justify-center align-middle p-8' action={action}>
+      <form className='flex flex-col items-center md:justify-center align-middle p-8' action={action}>
         <div>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" placeholder="Enter your username" />

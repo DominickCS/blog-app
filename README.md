@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+TABLE CREATE -> 
+REATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users (
+username   varchar(20),
+password   varchar(64),
+email      varchar(120),
+first_name  varchar(32),
+last_name   varchar(32), user_id uuid DEFAULT uuid_generate_v4 (), PRIMARY KEY (user_id));
+
+
 ## Getting Started
 
 First, run the development server:

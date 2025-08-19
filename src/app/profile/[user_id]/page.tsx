@@ -1,26 +1,26 @@
 'use client'
 import { usePathname } from "next/navigation"
 import GetUserProfile from "@/app/profile/actions"
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function UserProfile() {
-  let userAuth
+  const [userAuth, setUserAuth] = useState(null)
   const pathname = usePathname()
   const userID = pathname.split('/')[2];
+
   useEffect(() => {
     async function getuser() {
-      userAuth = await GetUserProfile(userID)
-      console.log("Test", userAuth)
+      setUserAuth(await GetUserProfile(userID))
       return userAuth
     }
     getuser()
-  }, []);
+  }, [userID]);
 
-  let firstName = userAuth[0].first_name
-  let last_name = userAuth[0].last_name
   return (
     <>
-      <h1>Hello! {firstName} {last_name}!</h1>
+      {userAuth ?
+        <h1>Hello! {userAuth[0].first_name} {userAuth[0].last_name}!</h1>
+        : <h1>Loading Profile...</h1>}
     </>
   )
 }

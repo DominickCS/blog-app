@@ -6,12 +6,12 @@ import { logout } from "@/app/actions/auth";
 import { verifySession } from "@/app/lib/dal";
 
 export default function UserProfile() {
-  verifySession()
   const [userAuth, setUserAuth] = useState(null)
   const pathname = usePathname()
   const userID = pathname.split('/')[2];
 
   useEffect(() => {
+    verifySession()
     async function getuser() {
       setUserAuth(await GetUserProfile(userID))
       return userAuth

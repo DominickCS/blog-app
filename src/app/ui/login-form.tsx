@@ -3,9 +3,11 @@
 import { login } from '@/app/actions/auth'
 import Link from 'next/link'
 import { useActionState } from 'react'
+import { verifySession } from '../lib/dal'
 
 export function LoginForm() {
   const [state, action, pending] = useActionState(login, undefined)
+  verifySession()
   return (
     <>
       <form className='flex justify-center align-middle p-8' action={action}>

@@ -2,8 +2,12 @@
 
 import { SignupFormSchema, LoginFormSchema, FormState } from '@/app/lib/definitions'
 import { redirect } from 'next/navigation';
+import { createSession } from '@/app/lib/session';
 const bcrypt = require('bcrypt');
 const pool = require("@/../db")
+import { cookies } from 'next/headers'
+import { deleteSession } from '@/app/lib/session'
+
 
 export async function login(state: FormState, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse({
@@ -30,9 +34,14 @@ export async function login(state: FormState, formData: FormData) {
       message: 'Incorrect Login Credentials',
     };
   }
+  await createSession(user_id)
   redirect(`/profile/${user_id}/`)
 }
 
+export async function logout() {
+  await deleteSession()
+  redirect('/login')
+}
 
 export async function signup(state: FormState, formData: FormData) {
   // Validate form fields

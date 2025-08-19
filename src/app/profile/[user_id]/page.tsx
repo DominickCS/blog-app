@@ -1,32 +1,31 @@
 'use client'
-import { usePathname } from "next/navigation"
 import GetUserProfile from "@/app/profile/actions"
 import { useState, useEffect } from "react";
 import { logout } from "@/app/actions/auth";
 import { verifySession } from "@/app/lib/dal";
 
 export default function UserProfile() {
-  const [userAuth, setUserAuth] = useState(null)
-  const pathname = usePathname()
-  const userID = pathname.split('/')[2];
+  const [userSession, setUserSession] = useState(null)
+  const [userData, setUserData] = useState(null)
 
   useEffect(() => {
-    verifySession()
-    async function getuser() {
-      setUserAuth(await GetUserProfile(userID))
-      return userAuth
+    async function fetchSession() {
+      const currentSession = await verifySession()
+      setUserSession(currentSession.userId)
+      const currentUser = await GetUserProfile(currentSession.userId)
+      setUserData(currentUser)
     }
-    getuser()
-  }, [userID]);
+    fetchSession()
+
+  }, []);
 
   return (
     <>
-      {userAuth ?
+      {userData ?
         <div className="flex justify-center">
-          <h1>Hello! {userAuth[0].first_name} {userAuth[0].last_name}!</h1>
-          <button onClick={logout}>Logout</button>
+          <h1>Hello! {userData[0]?.first_name} {userData[0]?.last_name}!</h1>
         </div>
-        : <h1>Loading Profile...</h1>}
+        : <h1 className="flex justify-center">Loading Profile...</h1>}
     </>
   )
 }

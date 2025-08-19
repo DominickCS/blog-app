@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 import { createSession } from '@/app/lib/session';
 const bcrypt = require('bcrypt');
 const pool = require("@/../db")
-import { cookies } from 'next/headers'
 import { deleteSession } from '@/app/lib/session'
 
 
@@ -35,7 +34,7 @@ export async function login(state: FormState, formData: FormData) {
     };
   }
   await createSession(user_id)
-  redirect(`/profile/${user_id}/`)
+  redirect(`/profile/${user_id}`)
 }
 
 export async function logout() {
@@ -53,19 +52,19 @@ export async function signup(state: FormState, formData: FormData) {
     password: formData.get('password'),
   })
 
-  // If any form fields are invalid, return early
+  // Prevent submission on validation error
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     }
   }
 
-  // 2. Prepare data for insertion into database
+  // Set User data and hash password for database storing
   const { username, first_name, last_name, email, password } = validatedFields.data
   // e.g. Hash the user's password before storing it
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  // 3. Insert the user into the database or call an Auth Library's API
+  // Insert new user into database
   try {
     await pool.query(`
   INSERT INTO users (username, first_name, last_name, email, password)
@@ -73,7 +72,7 @@ export async function signup(state: FormState, formData: FormData) {
       `);
   } catch (error) {
     return {
-      message: 'DB Error - Could not register user',
+      message: 'An error occured during registration.',
     };
   }
 }

@@ -46,6 +46,6 @@ export type FormState =
   }
   | undefined
 
-export type SessionPayload = {
-  userId: string
+export interface SessionPayload {
+  userId?: string
 }

@@ -32,16 +32,17 @@ input {
 }
 
 button {
-  border: solid black 2px;
-  margin: 24px;
-  padding: 8px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 4px;
   border-radius: 0;
-  transition: 1s;
+  transition: .4s;
 }
 
 button:hover {
-  transition: 1s;
-  background-color: grey;
+  transition: .6s;
+  background-color: gray;
   color: white;
   cursor: pointer;
 }
+

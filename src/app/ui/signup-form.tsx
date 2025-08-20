@@ -1,15 +1,11 @@
 'use client'
 
 import { signup } from '@/app/actions/auth'
-import { useActionState, useEffect } from 'react'
-import { verifySession } from '../lib/dal'
+import { useActionState } from 'react'
 
 
 export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined)
-  useEffect(() => {
-    verifySession()
-  }, []);
   return (
     <form className='flex flex-col mt-8 items-center md:justify-between ' action={action}>
       <div className=''>

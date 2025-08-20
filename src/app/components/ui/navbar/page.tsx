@@ -1,6 +1,5 @@
 'use client'
 import { logout } from "@/app/actions/auth";
-import { verifySession } from "@/app/lib/dal";
 import Link from "next/link";
 import { useState } from "react"
 

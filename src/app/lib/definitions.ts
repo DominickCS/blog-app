@@ -1,5 +1,17 @@
 import { z } from 'zod'
 
+export const CreateArticleSchema = z.object({
+  article_title: z
+    .string()
+    .min(2, { message: 'Article title must not be empty.' })
+    .max(120, { message: 'Article title must not exceed 120 characters.' })
+  ,
+  article_body: z
+    .string()
+    .min(2, { message: 'The article cannot be empty!' })
+}
+)
+
 export const LoginFormSchema = z.object({
   username: z
     .string()

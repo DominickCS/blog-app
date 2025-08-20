@@ -3,12 +3,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 TABLE CREATE -> 
 REATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE users (
+## USER TABLE SCHEMA
 username   varchar(20),
 password   varchar(64),
 email      varchar(120),
 first_name  varchar(32),
-last_name   varchar(32), user_id uuid DEFAULT uuid_generate_v4 (), PRIMARY KEY (user_id));
+last_name   varchar(32), user_id uuid DEFAULT uuid_generate_v4 (), permission_level varchar(64) DEFAULT 'member', PRIMARY KEY (user_id));
+
+## ARTICLES TABLE SCHEMA
+ article_id int, article_title varchar(120), article_body varchar(4096), article_tags text[], like_count int DEFAULT 0, article_illustrations text[][], article_comments text[][], publish_date date DEFAULT date, user_id uuid, PRIMARY KEY (article_id));
 
 
 ## Getting Started

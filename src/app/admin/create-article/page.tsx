@@ -16,9 +16,10 @@ export default function CreateArticlePage() {
         <textarea rows={8} cols={64} id="article_body" name="article_body" placeholder="What's on your mind?" />
       </div>
       {state?.errors?.article_body && <p>{state.errors.article_body}</p>}
-      {pending ? "Publishing Article..." : null}
+      {pending ? "Publishing Article..." : state?.message}
       <button disabled={pending} type="submit">Publish</button>
     </form>
   )
 }
 
+// TODO Add Other Article DB SCHEMA

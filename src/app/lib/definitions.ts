@@ -4,8 +4,7 @@ export const CreateArticleSchema = z.object({
   article_title: z
     .string()
     .min(2, { message: 'Article title must not be empty.' })
-    .max(120, { message: 'Article title must not exceed 120 characters.' })
-  ,
+    .max(120, { message: 'Article title must not exceed 120 characters.' }),
   article_body: z
     .string()
     .min(2, { message: 'The article cannot be empty!' })
@@ -53,6 +52,8 @@ export type FormState =
       name?: string[]
       email?: string[]
       password?: string[]
+      article_title?: string[]
+      article_body?: string[]
     }
     message?: string
   }

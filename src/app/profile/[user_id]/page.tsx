@@ -39,6 +39,11 @@ export default function UserProfile() {
       {userArticles ?
         <div className="flex flex-col items-center py-8">
           <h2>Your Articles</h2>
+          <ul>{userArticles?.map((article) => (
+            <li key={article.article_id}><Link href={`/article/${article.article_id}`}> {decodeURI(article.article_title)}</Link></li>
+          ))}
+
+          </ul>
         </div>
         :
         <p>Loading Articles...</p>

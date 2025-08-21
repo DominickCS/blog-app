@@ -46,6 +46,9 @@ export default function NavigationBar(session) {
               <nav className="left-nav">
                 <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/">Home</Link>
                 <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/about">About</Link>
+                {!session.session.isAuth ? null :
+                  <Link className="m-8" href="/admin/create-article">Create an Article</Link>
+                }
               </nav>
               <nav className="right-nav">
                 <Link className="m-8" href="/">Search</Link>
@@ -76,6 +79,9 @@ export default function NavigationBar(session) {
               <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/login">Sign In</Link>
               :
               <Link onClick={() => setIsNavOpen((prev) => !prev)} className="m-8" href="/login">Profile</Link>}
+            {!session.session.isAuth ? null :
+              <Link className="m-8" href="/admin/create-article">Create an Article</Link>
+            }
             <Link className="m-8" href="/subscribe">Subscribe</Link>
             {!session.session.isAuth ? null :
               <button onClick={clientLogout}>Logout</button>

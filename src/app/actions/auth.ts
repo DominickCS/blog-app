@@ -24,6 +24,8 @@ export async function login(state: FormState, formData: FormData) {
   let user_id
   try {
     const userAuth = await pool.query(`SELECT user_id, username, password FROM users WHERE username='${username}'`)
+    console.log(userAuth)
+    console.log(password)
     let comparePasswords = await bcrypt.compare(password, userAuth.rows[0].password)
     if (comparePasswords) {
       user_id = userAuth.rows[0].user_id
@@ -75,5 +77,5 @@ export async function signup(state: FormState, formData: FormData) {
       message: 'An error occured during registration.',
     };
   }
-  redirect(`/`)
+  redirect(`/login`)
 }

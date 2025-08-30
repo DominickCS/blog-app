@@ -25,7 +25,7 @@ export default function Article() {
     <>
       <section>
         {userArticles ?
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center m-24 border-2 border-black rounded p-72">
             <h1>{userArticles[splituri[2] - 1]?.article_title}</h1>
             <p>{userArticles[splituri[2] - 1]?.article_body}</p>
             <p>Likes: {userArticles[splituri[2] - 1]?.like_count}</p>

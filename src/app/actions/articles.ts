@@ -35,4 +35,9 @@ export async function createArticle(state: FormState, formData: FormData) {
   redirect(`/profile/${currentSession.userId}`)
 }
 
+export async function fetchArticles() {
+  const fetchedArticles = await pool.query(`SELECT * FROM articles`);
+  return fetchedArticles.rows
+}
+
 //TODO Add remaining article schema
